@@ -22,8 +22,9 @@ function startSlideShow() {
         slides[i].classList.remove("active-slide");
     }
 }
+var next = document.getElementById("next");
 
-function nextSlide() {
+next.addEventListener("click", function() {
     console.log("next");
     
     for(i=0; i<slides.length; i++) {
@@ -32,6 +33,7 @@ function nextSlide() {
             slides[i].style.display = "none";
             slides[i].classList.remove("active-slide");
             slides[0].classList.add("active-slide");
+            console.log("slide " + i);
             break;
         }
         // if it's the active slide, make the next slide active.
@@ -39,6 +41,7 @@ function nextSlide() {
             slides[i].style.display = "none";
             slides[i].classList.remove("active-slide");
             slides[i+1].classList.add("active-slide");
+            console.log("slide " + i);
             break;
         }
     }
@@ -46,7 +49,7 @@ function nextSlide() {
     // display the active-slide
     var currentSlide = document.getElementsByClassName("active-slide");
     currentSlide[0].style.display = "block";
-}
+});
 
 function prevSlide() {
     console.log("prev");
@@ -57,6 +60,7 @@ function prevSlide() {
             slides[i].style.display = "none";
             slides[i].classList.remove("active-slide");
             slides[slides.length - 1].classList.add("active-slide");
+            console.log("slide " + i);
             break;
         }
         // if it's the active slide, make the next slide active.
@@ -64,6 +68,7 @@ function prevSlide() {
             slides[i].style.display = "none";
             slides[i].classList.remove("active-slide");
             slides[i-1].classList.add("active-slide");
+            console.log("slide " + i);
             break;
         }
     }
