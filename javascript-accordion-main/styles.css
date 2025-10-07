@@ -1,0 +1,12 @@
+.accordion-section {
+    content-visibility: hidden;
+}
+
+body {
+    background-color: #333;
+    color: white;
+}
+
+a {
+    color: yellow;
+}
