@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Monty Hall Problem</title>
+</head>
+<body>
+    <h1>The Monty Hall Problem</h1>
+    
+    <h2><span id="answerPercent"></span>% of the time, you should switch.</h2>
+
+    <script>
+        let switchCounter = 0;
+        let stayCounter = 0;
+
+        for(let i = 0; i < 1000; i ++)
+        {
+
+        
+            var car = Math.ceil(Math.random() * 3);
+
+            document.write("<p>The car is behind door number " + car + "</p>");
+
+            var choice = Math.ceil(Math.random() * 3);
+
+            document.write("<p>The contestant choses door number " + choice + "</p>");
+
+
+            
+            // let remove = Math.ceil(Math.random() * 3);
+            // while(remove == car || remove == choice) 
+            // {
+                //     remove = Math.ceil(Math.random() * 3);
+                // }
+                
+            let remove;
+            do
+            {
+                remove = Math.ceil(Math.random() * 3);
+            }
+            while(remove == car || remove == choice);
+            
+            document.write("<p>The host removes door number " + remove + "</p>");
+
+            if(choice == car)
+            {
+                stayCounter++;
+                document.write("<p style='color:red;'>The contestant should stay</p>");
+            }
+            else
+            {
+                switchCounter++;
+                document.write("<p style='color:green;'>The contestant should switch</p>");
+            }
+            document.write("<hr>");
+        }
+
+        var switchPercentSpan = document.getElementById("answerPercent");
+        switchPercentSpan.innerHTML = Math.round(switchCounter / 1000 * 100);
+
+    </script>
+
+</body>
+</html>
