@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        #todayStyle {
+            background-color: red;
+        }
+        #otherMonthStyle{
+            background-color: grey;
+        }
+    </style>
+
+    <script>
+
+        function getDaysInMonth(year, month)
+        {
+            let date = new Date(year, month + 1, 0);
+            return date.getDate();
+        }
+
+        // Define a variable for today and output it
+        let today = new Date();
+        document.write(`<p>Today is: ${today}</p>`)
+        
+        // Define a variable with the number of days in the current month
+        let daysInMonth = getDaysInMonth(today.getFullYear(), today.getMonth());
+        document.write(`<p>The number of days this month is: ${daysInMonth}</p>`)
+
+        // Define a variable with the starting date of our calendar
+        let firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        document.write("<p>The first of the month is " + firstOfMonth + "</p>");
+        
+        let startDate = new Date(
+            firstOfMonth.getFullYear(), 
+            firstOfMonth.getMonth(), 
+            1 - firstOfMonth.getDay());
+        document.write("<p>The calendar start date is " + startDate + "</p>");
+
+        // Define a variable for the number of weeks
+        let numberOfWeeks = Math.ceil((daysInMonth + firstOfMonth.getDay()) / 7);
+        document.write("<p>There are " + numberOfWeeks + " rows required</p>");
+
+        // Output a calendar
+        document.write("<table border=\"1\">");
+            document.write("<thead>");
+                document.write("<th>Sun</th>");
+                document.write("<th>Mon</th>");
+                document.write("<th>Tue</th>");
+                document.write("<th>Wed</th>");
+                document.write("<th>Thu</th>");
+                document.write("<th>Fri</th>");
+                document.write("<th>Sat</th>");
+            document.write("</thead>");
+            document.write("<tbody>");
+                var currentDate = startDate;
+                for (var i=0;i<numberOfWeeks;i++){
+                    document.write("<tr>")
+                        for(var j=0;j<7;j++){
+                            if(currentDate.getMonth() != today.getMonth())
+                            {
+                                document.write("<td id=otherMonthStyle>");
+                            }
+                            else if(currentDate.getDate() === today.getDate())
+                            {
+                                document.write("<td id=todayStyle>");
+                            } 
+                            else {document.write("<td>")};
+                            document.write(currentDate.getDate());
+                            currentDate.setDate(currentDate.getDate() + 1);
+                            document.write("</td>");
+                        }
+                    document.write("</tr>");
+                }
+            document.write("</tbody>");
+        document.write("</table>");
+                    
+
+        
+    </script>
+
+
+</body>
+</html>

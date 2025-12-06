@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Greetings!</h1>
+    <p id="currentArea"></p>
+    <p id="greetArea"></p>
+
+</body>
+<script>
+    // Get HTML element
+    currentArea = document.getElementById("currentArea");
+    greetArea = document.getElementById("greetArea");
+
+    // Define date variables
+    var today = new Date();
+    var hour = today.getHours(); // hour rounds down to the current hour 0-24
+    var day = today.getDay(); // remember: Sunday gives 0, Monday 1, tue 2...
+
+
+    // Test date
+    console.log(today + hour + day);
+
+    // Show date in HTML
+    currentArea.innerHTML = "Today's date is: " + today + 
+                            ". The time is: " + hour;
+
+
+// Monday - Do you have a case of the Mondays?
+// Friday Afternoon - It's almost the weekend!
+// Before Noon - Have a good morning!
+// After Noon - Have a good day!
+// Weekend - It's the weekend!!!
+
+    if (hour < 12) {
+        greetArea.innerHTML += "Have a good morning!";
+    }
+    if (day === 1){
+        greetArea.innerHTML += "Do you have a case of the Mondays?";
+    }
+    if (day === 0 || day === 6){ 
+        greetArea.innerHTML += "It's the weekend!!!";
+    }
+    if (day === 5 && hour >= 12) {
+        greetArea += "It's almost the weekend!";
+    }
+
+</script>
+</html>

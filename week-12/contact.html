@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Contact Form</h1>
+
+    <form method="post" id="form" action="submit.php">
+
+        <label>
+            Name:
+            <input type="text" id="name" name="name">
+            <div id="nameError" style="color:red; display:none;">Name is required.</div>
+        </label>
+        <br>
+        <label>
+            Email:
+            <input type="email" id="email" name="email">
+            <div id="emailError" style="color:red; display:none;">Valid email is required.</div>
+        </label>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+<script>
+    //Add validation to the form
+
+    // Here was the CoPilot way:
+    // const formHandler = document.querySelector('form');
+    // formHandler.addEventListener('submit', function(event) {
+    //     const name = document.getElementById('name').value;
+    //     const email = document.getElementById('email').value;
+    //     let valid = true;
+    //     let messages = [];
+
+    //     if (name === '') {
+    //         valid = false;
+    //         messages.push('Name is required.');
+    //     }
+
+    //     if (email === '') {
+    //         valid = false;
+    //         messages.push('Email is required.');
+    //     } else {
+    //         const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    //         if (!email.match(emailPattern)) {
+    //             valid = false;
+    //             messages.push('Please enter a valid email address.');
+    //         }
+    //     }
+
+    //     if (!valid) {
+    //         event.preventDefault();
+    //         alert(messages.join('\n'));
+    //     }
+    // });
+
+    // Here is Adam's way:
+    let form = document.getElementById('form');
+    let name = document.getElementById('name');
+    let nameError = document.getElementById('nameError');
+    let email = document.getElementById('email');
+    let emailError = document.getElementById('emailError');
+
+    form.addEventListener('submit', function(e) {
+
+        let error = 0;
+
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if(!name.value) {
+            nameError.innerHTML = "Please enter a name.";
+        }
+        else
+        {
+            nameError.innerHTML = "";
+        }
+        if(!email.value) {
+            emailError.innerHTML = "Please enter an email.";
+            error++;
+        }
+        else if (!pattern.test(email.value)) 
+        {
+            emailError.innerHTML = "Please enter a valid email address.";
+            error++;
+        }
+        else
+        {
+            emailError.innerHTML = "";
+        }
+
+        if(error > 0) {
+            e.preventDefault();
+        }
+    });
+</script>
+</html>
